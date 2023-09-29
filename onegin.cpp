@@ -9,26 +9,13 @@ int main()
 
     for(size_t i = 0; i < n_lines; ++i)
     {
-        char symbol = 'a';
-        size_t j = 0;
-
-        while(symbol != '\n')
-        {
-            fscanf(fileOnegin, "%c", &symbol);
-            array[i][j] = symbol;
-            printf(" прочитанный символ :%c", array[i][j]);
-            j++;
-            printf("\n");
-        }
+        if(fgets(array[i], sizeof(char) * 10, fileOnegin) == NULL)
+        break;
     }
-    printf("посимвольный вывод, вида <<символ (адрес, ASCII-код)>>:\n");
-    for(size_t i = 0; i < n_lines; ++i)
+    printf("построчный вывод: \n");
+    for(size_t i = 0; i < n_lines - 1; ++i)
     {
-        for(size_t j = 0; j < n_rows; ++j)
-        {
-            printf("%c(%p, %d) ", array[i][j], *(array + i * n_rows + j), array[i][j]);
-        }
-    printf("\n");
+        printf("%s", array[i]);
     }
     fclose(fileOnegin);
 
